@@ -18,14 +18,16 @@ function countCats(matrix) {
   let arr = [];
   
   for(let i = 0; i < matrix.length; i++) { 
-    if (typeof matrix[i] === 'object') {
+    if (typeof matrix[i] !== 'object' && matrix[i] !== '^^') {
+       return 0;
+    } else if (matrix[i] === '^^') {
+       arr.push(matrix[i])
+    } else if (typeof matrix[i] === 'object') {
       for(let j = 0; j < matrix[i].length; j++) {
         if (matrix[i][j] === '^^') {
-          arr.push(matrix[i][j]);
+        arr.push(matrix[i][j]);
         }
-      }
-    } else if (matrix[i] === '^^') {
-        arr.push(matrix[i])
+      }  
     }
   }
     return arr.length;
